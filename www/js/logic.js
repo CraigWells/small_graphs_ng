@@ -13,11 +13,8 @@
 	};
 
 	function createCanvasInstance(item, callback, count){
-		console.log("createCanvasInstance");
-		var canvas_id = "canvas_"+item.name;
-		console.log(canvas_id);
 		var canv = document.createElement('canvas');
-		canv.id = canvas_id;
+		canv.id = "canvas_"+item.name;;
 		canv.width = 300;
 		canv.height = 150;
 		canv.innerHTML = "Your browser does not support the HTML5 canvas tag.";
@@ -28,14 +25,11 @@
 	};
 
 	function calculateValues(canvasItem, count){
-		console.log(count);
-		console.log("calcValues");
 		canvasItem.data.values = [];
 		for(key in data[count].columnValues){
 				canvasItem.data.values.push(data[count].columnValues[key]);
 		}
 		calcDif(canvasItem);
-		//return canvasItem;
 	};
 
 	function calcDif(canvasItem){
@@ -48,13 +42,10 @@
 				canvasItem.data.difs.push(thisDif);
 			}
 		}
-		console.log("calc diffs");
-		console.log(canvasItem);
 		plotPoints(canvasItem);
 	};
 
 	function plotPoints(canvasItem){
-		console.log("plotPoints");
 		var range = canvasItem.data.difs.length;
 		var spacesX = Math.floor(canvasItem.canvas.clientWidth / range);
 		canvasItem.data.pointsX = [];
@@ -68,7 +59,6 @@
 	};
 
 	function drawMedian(canvasItem, callback){
-		console.log("drawMedian");
 		var ypos = canvasItem.canvas.clientHeight/2;
 		drawMedianLine(
 			{
