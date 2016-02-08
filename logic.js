@@ -1,21 +1,21 @@
 ﻿var GraphCreator = (function(){
 
 	var numberOfItems = data.length;
-	var canvasInstances = [];
 
 	function init(){
 		createCanvas();
-		console.log(canvasInstances);
 	};
 
 	function createCanvas(){
 		for(var i = 0; i < numberOfItems; i++){
-			createCanvasInstance(data[i], calculateValues);
+			createCanvasInstance(data[i], calculateValues, i);
 		}
 	};
 
-	function createCanvasInstance(item, callback){
+	function createCanvasInstance(item, callback, count){
+		console.log("createCanvasInstance");
 		var canvas_id = "canvas_"+item.name;
+		console.log(canvas_id);
 		var canv = document.createElement('canvas');
 		canv.id = canvas_id;
 		canv.width = 300;
@@ -24,21 +24,18 @@
 		document.getElementById('application').appendChild(canv);
 		var ctx = canv.getContext("2d");
 		ctx.data = item;
-		canvasInstances.push(callback(ctx));
+		callback(ctx, count);
 	};
 
-	function calculateValues(canvasItem){
-		console.log("callback");
-		var len = data.length;
-		for(var i=0; i<len;i++){
-			console.log(i);
-			canvasItem.data.values = [];
-			for(key in data[i].columnValues){
-				canvasItem.data.values.push(data[i].columnValues[key]);
-			}
-			calcDif(canvasItem);
+	function calculateValues(canvasItem, count){
+		console.log(count);
+		console.log("calcValues");
+		canvasItem.data.values = [];
+		for(key in data[count].columnValues){
+				canvasItem.data.values.push(data[count].columnValues[key]);
 		}
-		return canvasItem;
+		calcDif(canvasItem);
+		//return canvasItem;
 	};
 
 	function calcDif(canvasItem){
@@ -51,12 +48,14 @@
 				canvasItem.data.difs.push(thisDif);
 			}
 		}
+		console.log("calc diffs");
+		console.log(canvasItem);
 		plotPoints(canvasItem);
 	};
 
 	function plotPoints(canvasItem){
+		console.log("plotPoints");
 		var range = canvasItem.data.difs.length;
-		console.log(canvasItem);
 		var spacesX = Math.floor(canvasItem.canvas.clientWidth / range);
 		canvasItem.data.pointsX = [];
 		var count = 0;
@@ -64,25 +63,26 @@
 			count += spacesX;
 			canvasItem.data.pointsX.push(count);
 		}
-		drawMedian(canvasItem, plotLine);
+		drawMedian(canvasItem);
+		plotLine(canvasItem);
 	};
 
 	function drawMedian(canvasItem, callback){
+		console.log("drawMedian");
 		var ypos = canvasItem.canvas.clientHeight/2;
-		drawLine(
+		drawMedianLine(
 			{
 				"a" : 0,
 				"b" : ypos,
 				"c" : 300,
 				"d" : ypos,
 				"colour" : "#909090",
-				"canvasItem" : canvasItem,
-				"callback" : callback
+				"canvasItem" : canvasItem
 			}
 		);
 	};
 
-	function drawLine(settings){
+	function drawMedianLine(settings){
 		settings.canvasItem.beginPath();
 		settings.canvasItem.moveTo(settings.a, settings.b);
 		settings.canvasItem.lineTo(settings.c, settings.d);
@@ -92,13 +92,28 @@
 			settings.canvasItem.strokeStyle = "#000000"
 		};
 		settings.canvasItem.stroke();
-		if(settings.callback){settings.callback(settings.canvasItem)};
 	};
 
 	function plotLine(canvasItem){
-		console.log("plot lines");
-		console.log(canvasItem.data.pointsX);
-		console.log(canvasItem.data.difs);
+		var len = canvasItem.data.pointsX.length;
+		var ypos = canvasItem.canvas.clientHeight/2;
+		canvasItem.beginPath();
+		console.log(canvasItem);
+		for(var i = 0; i < len; i++){
+			drawLineTo(
+				{
+					"x" : canvasItem.data.pointsX[i],
+					"y" : ypos + canvasItem.data.difs[i],
+					"canvasItem" : canvasItem
+				}
+			);
+		}
+		canvasItem.strokeStyle="red";
+		canvasItem.stroke();
+	};
+
+	function drawLineTo(settings){
+		settings.canvasItem.lineTo(settings.x, settings.y);
 	};
 
 	return init();
