@@ -1,13 +1,9 @@
-﻿/*
+﻿var GraphCreator = (function(){
 
-	- rewrite difs so the values map to the document height (ie does not exceed window hight)
-
-*/
-
-var GraphCreator = (function(){
-
-	var numberOfItems = data.length;
-	var canvasItem;
+	var numberOfItems = data.length,
+		canvasItem,
+		height = 80,
+		width = 180;
 
 	function init(){
 		createCanvas();
@@ -17,26 +13,27 @@ var GraphCreator = (function(){
 		for(var i = 0; i < numberOfItems; i++){
 			canvasItem = createCanvasInstance(data[i]);
 			calculateValues(i);
-			calcDif();
+			calcDifs();
 			plotPoints();
 			drawMedian(
 				{
 					"a" : 0,
-					"b" : canvasItem.canvas.clientHeight/2,
+					"b" : height/2,
 					"c" : 300,
-					"d" : canvasItem.canvas.clientHeight/2,
+					"d" : height/2,
 					"colour" : "#909090"
 				}
 			);	
 			plotLine();
+			console.log(canvasItem);
 		}
 	};
 
 	function createCanvasInstance(item){
 		var canv = document.createElement('canvas');
 		canv.id = "canvas_"+item.name;;
-		canv.width = 300;
-		canv.height = 150;
+		canv.width = width;
+		canv.height = height;
 		canv.innerHTML = "Your browser does not support the HTML5 canvas tag.";
 		document.getElementById('application').appendChild(canv);
 		var ctx = canv.getContext("2d");
@@ -51,23 +48,32 @@ var GraphCreator = (function(){
 		}
 	};
 
-	function calcDif(){
-		var values = canvasItem.data.values;
-		canvasItem.data.difs = [];
-		var len = canvasItem.data.values.length;
+	function calcDifs(){
+		canvasItem.data.pointsY = [];
+		var values = canvasItem.data.values,
+			len = canvasItem.data.values.length,
+			lowest = getLowestValue(values),
+			range = getHeighestValue(values) - lowest,
+			increment = height / range;	
 		for(var i=0; i<len;i++){
-			if(i != (len-1)){
-				var thisDif = (values[i+1]-values[i]);
-				canvasItem.data.difs.push(thisDif);
-			}
+			canvasItem.data.pointsY.push(height - (values[i] - lowest) * increment);
 		}
 	};
 
+	function getHeighestValue(values){
+		return Math.max.apply(null, values);
+	};
+
+	function getLowestValue(values){
+		return Math.min.apply(null, values);
+	};
+
 	function plotPoints(){
-		var range = canvasItem.data.difs.length;
-		var spacesX = Math.floor(canvasItem.canvas.clientWidth / range);
+		var range = canvasItem.data.pointsY.length - 1,
+			spacesX = Math.floor(width / range),
+			count = 0;
 		canvasItem.data.pointsX = [];
-		var count = 0;
+		canvasItem.data.pointsX.push(count);
 		for(var i = 0; i < range; i++){
 			count += spacesX;
 			canvasItem.data.pointsX.push(count);
@@ -78,32 +84,18 @@ var GraphCreator = (function(){
 		canvasItem.beginPath();
 		canvasItem.moveTo(settings.a, settings.b);
 		canvasItem.lineTo(settings.c, settings.d);
-		if(settings.colour){
-			canvasItem.strokeStyle = settings.colour;
-		}else{
-			canvasItem.strokeStyle = "#000000"
-		};
+		canvasItem.strokeStyle = settings.colour;
 		canvasItem.stroke();
 	};
 
 	function plotLine(){
 		var len = canvasItem.data.pointsX.length;
-		var ypos = canvasItem.canvas.clientHeight/2;
 		canvasItem.beginPath();
 		for(var i = 0; i < len; i++){
-			drawLineTo(
-				{
-					"x" : canvasItem.data.pointsX[i],
-					"y" : ypos + canvasItem.data.difs[i]
-				}
-			);
+			canvasItem.lineTo(canvasItem.data.pointsX[i], canvasItem.data.pointsY[i]);
 		}
 		canvasItem.strokeStyle="red";
 		canvasItem.stroke();
-	};
-
-	function drawLineTo(settings){
-		canvasItem.lineTo(settings.x, settings.y);
 	};
 
 	return init();
