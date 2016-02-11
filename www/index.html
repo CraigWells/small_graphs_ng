@@ -1,16 +1,20 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>small graphs</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Small Graphs Angular</title>
         <base href="http://localhost:8080/" target="_blank">
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
-        <body>
-            <div id="application">
 
-            </div>
-            <script src="js/data.js"></script>
-            <script src="js/logic.js"></script>
-        </body>
+    <body ng-app="beanApp">
+        <div ng-controller="MainCtrl as main">
+            <graph graph></graph>
+        </div>
+        <script src="libs/angular.min.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
