@@ -1,3 +1,5 @@
 <div ng-repeat="item in graphs">
-	{{ item.a }}
+	<!-- canvas ng-attr-id="{{ item.name }}"></canvas-->
+	<canvas id="{{ item.name }}"></canvas>
+	<p>{{item.name}}</p>
 </div>
