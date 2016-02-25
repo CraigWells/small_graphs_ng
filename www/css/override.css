@@ -1,0 +1,12 @@
+canvas{
+	padding: 50px 0px 10px 0px;
+}
+
+.col-border{
+	padding: 15px 0px 15px 0px;
+}
+
+.graph-container{
+	min-width: 170px;
+	padding:0;
+}

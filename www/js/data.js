@@ -1,7 +1,8 @@
 ﻿var data = [
 	{
-		name : "item_1",
-		description : "Something something something",
+		name : "2017 Sales forecast",
+		description : "Based upon current trends",
+		details : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		columnValues : {
 			"value_1" : 200,
 			"value_2" : 206,
@@ -14,8 +15,9 @@
 		}
 	},
 	{
-		name : "item_2",
-		description : "Something something something",
+		name : "Growth 4th Quarter 2016",
+		description : "Actual growth",
+		details : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		columnValues : {
 			"value_1" : 186,
 			"value_2" : 199,
@@ -32,8 +34,9 @@
 		}
 	},
 	{
-		name : "item_3",
-		description : "Something something something",
+		name : "Training expences 2012 - 2015",
+		description : "Investment in personnel development",
+		details : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		columnValues : {
 			"value_1" : 1,
 			"value_2" : 2,
@@ -48,12 +51,36 @@
 			"value_11" : 11,
 			"value_12" : 12
 		}
-	}	
-];
-
-var newobj = [
-	{a:"", b:"c", c:"c"},
-	{a:"", b:"c", c:"c"},
-	{a:"", b:"c", c:"c"},
-	{a:"", b:"c", c:"c"}
+	},
+	{
+		name : "Gross expenditure 2016",
+		description : "Total annual costs, year to date",
+		details : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		columnValues : {
+			"value_1" : 900,
+			"value_2" : 830,
+			"value_3" : 730,
+			"value_4" : 832,
+			"value_5" : 789,
+			"value_6" : 578,
+			"value_7" : 456,
+			"value_8" : 345,
+			"value_9" : 678,
+			"value_10" : 610,
+			"value_11" : 419,
+			"value_12" : 712,
+			"value_13" : 900,
+			"value_14" : 830,
+			"value_15" : 300,
+			"value_16" : 400,
+			"value_17" : 500,
+			"value_18" : 600,
+			"value_19" : 700,
+			"value_20" : 800,
+			"value_21" : 900,
+			"value_22" : 810,
+			"value_23" : 711,
+			"value_24" : 612
+		}	
+	}		
 ];

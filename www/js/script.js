@@ -6,7 +6,7 @@
     beanApp.factory('graphData', function(){
         // Perform the data manipulation 
         var height = 80,
-            width = 180;
+            width = 170;
 
         function init(){
             var len = data.length;    
@@ -123,13 +123,5 @@
             }
         }
     }]);
-
-    function getGraphData(){
-        var canv = document.getElementById('item_1');
-        canv.width = 280;
-        canv.height = 150;
-        var ctx = canv.getContext("2d");
-        return data;
-    };
 
 })(window.angular);

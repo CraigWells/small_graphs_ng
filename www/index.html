@@ -7,12 +7,15 @@
         <title>Small Graphs Angular</title>
         <base href="http://localhost:8080/" target="_blank">
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/override.css" rel="stylesheet">
     </head>
 
     <body ng-app="beanApp">
-        <div ng-controller="MainCtrl as main">
-            <graphs></graphs>
-        </div>
+    	<!-- div class="col-lg-11 col-centered" -->  
+	        <div ng-controller="MainCtrl as main" class="container">
+	            <graphs></graphs>
+	        </div>
+        <!-- /div -->
         <script src="libs/angular.min.js"></script>
         <script src="js/data.js"></script>
         <script src="js/script.js"></script>

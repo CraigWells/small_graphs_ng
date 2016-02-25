@@ -1,5 +1,10 @@
-<div ng-repeat="item in graphs">
-	<!-- canvas ng-attr-id="{{ item.name }}"></canvas-->
-	<canvas id="{{ item.name }}"></canvas>
-	<p>{{item.name}}</p>
+<div ng-repeat="item in graphs" class="row">
+	<div class="col-md-2 graph-container">
+		<canvas id="{{ item.name }}" height="80" width="170"></canvas>
+	</div>	
+	<div class="col-md-10 col-border">	
+		<h3>{{item.name}}</h3>
+		<h4>{{item.description}}</h4>
+		<p>{{item.details}}</p>
+	</div>
 </div>

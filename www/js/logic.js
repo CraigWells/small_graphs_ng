@@ -2,8 +2,8 @@
 
 	var numberOfItems = data.length,
 		canvasItem,
-		height = 80,
-		width = 180;
+		height = 150,
+		width = 300;
 
 	function init(){
 		createCanvas();
