@@ -1,3 +1,8 @@
+body{
+	margin-left: 10px;
+	margin-right:10px;
+}
+
 canvas{
 	padding: 50px 0px 10px 0px;
 }
@@ -10,3 +15,4 @@ canvas{
 	min-width: 170px;
 	padding:0;
 }
+
